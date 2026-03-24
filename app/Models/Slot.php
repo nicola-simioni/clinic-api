@@ -15,8 +15,9 @@ class Slot extends Model
     ];
 
     protected $casts = [
-        'starts_at' => 'datetime',
-        'ends_at'   => 'datetime',
+        'starts_at'    => 'datetime',
+        'ends_at'      => 'datetime',
+        'is_available' => 'boolean',
     ];
 
     public function doctor()

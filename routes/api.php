@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\DoctorController;
 use App\Http\Controllers\Api\V1\ServiceController;
+use App\Http\Controllers\Api\V1\SlotController;
 
 Route::prefix('v1')->group(function () {
 
@@ -17,5 +18,6 @@ Route::prefix('v1')->group(function () {
         Route::get('/me',      [AuthController::class, 'me']);
         Route::apiResource('/doctors', DoctorController::class);
         Route::apiResource('/services', ServiceController::class);
+        Route::apiResource('/slots', SlotController::class);
     });
 });
