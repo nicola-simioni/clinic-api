@@ -4,6 +4,8 @@ namespace App\Http\Resources\Api\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\V1\SlotResource;
+use App\Http\Resources\Api\V1\UserResource;
 
 class BookingResource extends JsonResource
 {
