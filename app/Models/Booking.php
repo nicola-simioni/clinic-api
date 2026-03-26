@@ -13,6 +13,10 @@ class Booking extends Model
         'notes',
     ];
 
+    protected $casts = [
+        'status' => 'string'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

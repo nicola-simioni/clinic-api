@@ -8,6 +8,7 @@ use App\Models\Slot;
 use Illuminate\Http\Request;
 use App\Http\Resources\Api\V1\BookingResource;
 use App\Http\Requests\Api\V1\Booking\StoreRequest;
+use App\Events\BookingCreated;
 
 class BookingController extends Controller
 {
@@ -38,7 +39,8 @@ class BookingController extends Controller
                 "notes" => $request->notes
             ]);
 
-            $booking->load(['slot.doctor', 'slot.service', 'user']);
+            $booking->load(['slot.doctor', 'slot.service', 'user']);                
+            BookingCreated::dispatch($booking);            
 
             // Mark the slot as unavailable
             $slot->update(['is_available' => false]);

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Events\BookingCreated;
+use Illuminate\Support\Facades\Event;
+use App\Listeners\SendBookingConfirmation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+            BookingCreated::class,
+            SendBookingConfirmation::class
+        );
     }
 }
