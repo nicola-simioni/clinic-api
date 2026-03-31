@@ -25,7 +25,7 @@ This project was built as a portfolio piece to demonstrate proficiency in modern
 - Async email notifications via job queues
 - Event-driven architecture with Laravel Events & Listeners
 - Full test coverage with PHPUnit
-- API versioning (v1)
+- API versioning (v1 + v2)
 
 ---
 
@@ -85,6 +85,12 @@ docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate
 ```
 
+**7. Start the queue worker**
+```bash
+docker compose exec app php artisan queue:work
+```
+> Required for async email notifications on booking creation.
+
 The API will be available at: `http://localhost:8000`
 
 ---
@@ -141,6 +147,19 @@ Protected routes require the header: `Authorization: Bearer <token>`
 | POST | `/bookings` | Yes | Create a booking |
 | GET | `/bookings/{id}` | Yes | Get a booking |
 | DELETE | `/bookings/{id}` | Yes | Cancel a booking |
+
+## API v2
+
+Endpoints prefixed with `/api/v2`.
+
+### Bookings (v2)
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/bookings` | Yes | List user's bookings with localized status label |
+
+**Changes from v1:**
+- Added `status_label` field with Italian translation
+- Removed nested `slot` and `user` relations
 
 ---
 
