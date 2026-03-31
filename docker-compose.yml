@@ -32,6 +32,8 @@ services:
       MYSQL_USER: clinic
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - clinic-network
 
@@ -46,3 +48,7 @@ services:
 networks:
   clinic-network:
     driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

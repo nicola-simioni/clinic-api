@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\DoctorController;
 use App\Http\Controllers\Api\V1\ServiceController;
 use App\Http\Controllers\Api\V1\SlotController;
 use App\Http\Controllers\Api\V1\BookingController;
+use App\Http\Controllers\Api\V2\BookingController as BookingControllerV2;
 
 Route::prefix('v1')->group(function () {
 
@@ -22,4 +23,8 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/slots', SlotController::class);
         Route::apiResource('/bookings', BookingController::class);
     });
+});
+
+Route::prefix('v2')->middleware('auth:sanctum')->group(function () {
+    Route::get('/bookings', [BookingControllerV2::class, 'index']);
 });
